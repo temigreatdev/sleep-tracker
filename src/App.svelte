@@ -39,6 +39,8 @@
 
   .panel {
     display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #313040a8;
     margin: 10px;
     text-align: center;
