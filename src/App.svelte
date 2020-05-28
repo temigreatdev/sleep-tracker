@@ -1,8 +1,9 @@
 <script>
   import Icon from "svelte-awesome";
-  import { table, plusCircle, areaChart } from "svelte-awesome/icons";
+  import { table, plusCircle, areaChart, calendar } from "svelte-awesome/icons";
   import Datepicker from "svelte-calendar";
   import dayjs from "dayjs";
+  import Forms from "./components/Forms.svelte"
 
   const daysOfWeek = [
     ["Domingo", "Dom"],
@@ -29,12 +30,13 @@
   ];
 
   let dateChosen = null;
+  let selected = new Date();
 </script>
 
 <style>
   .container {
     display: flex;
-    color: white;
+    color: #9544eb;
   }
 
   .panel {
@@ -49,8 +51,19 @@
     font-weight: bold;
   }
 
-  .opacity-80 {
-    opacity: 0.8;
+  .btn-datepicker {
+    color: #9544eb;
+    border: 0;
+    background-color: #313040a8;
+    margin: 0 0 10% 0;
+  }
+
+  .opacity-100 {
+    opacity: 1;
+  }
+
+  .opacity-90 {
+    opacity: 0.9;
   }
 
   .wd-100 {
@@ -80,9 +93,15 @@
 
 <main>
   <div class="container vh-70">
-    <div class="panel wd-100" />
+    <div class="panel wd-100" >
+      
+      { dayjs(selected).format('DD/MM/YYYY') }
+     
+      <Forms/>
+
+    </div>
   </div>
-  <div class="container opacity-80 vh-30">
+  <div class="container opacity-90 vh-30">
     <div class="panel wd-100">
       <div class="wd-25">
         <Datepicker
@@ -96,13 +115,16 @@
           dayHighlightedTextColor="#fff"
           {daysOfWeek}
           {monthsOfYear}
-          bind:dateChosen />
+          bind:dateChosen
+          bind:selected >
+               <Icon data={calendar} scale="5"/>
+          </Datepicker>
       </div>
       <div class="wd-25">
-        <Icon data={plusCircle} scale="5" />
+        <Icon data={plusCircle} scale="5"/>
       </div>
       <div class="wd-25">
-        <Icon data={table} scale="5" />
+        <Icon data={table} scale="5"/>
       </div>
       <div class="wd-25">
         <Icon data={areaChart} scale="5" />
