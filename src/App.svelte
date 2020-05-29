@@ -1,9 +1,17 @@
 <script>
   import Icon from "svelte-awesome";
-  import { table, plusCircle, areaChart, calendar } from "svelte-awesome/icons";
+  import { cloudUpload, areaChart, calendar, fileExcelO } from "svelte-awesome/icons";
   import Datepicker from "svelte-calendar";
   import dayjs from "dayjs";
   import Forms from "./components/Forms.svelte"
+  import Modal from 'svelte-simple-modal';
+
+  import { afterUpdate } from 'svelte';
+
+  afterUpdate(() => {
+    let calendarPopover = document.querySelector('.sc-popover'); 
+    calendarPopover.style.position='unset';
+  });
 
   const daysOfWeek = [
     ["Domingo", "Dom"],
@@ -28,6 +36,9 @@
     ["Novembro", "Nov"],
     ["Dezembro", "Dez"]
   ];
+  
+
+
 
   let dateChosen = null;
   $: selected = new Date();
@@ -92,6 +103,7 @@
     height: 25vh;
     overflow: hidden;
   }
+
 </style>
 
 <main>
@@ -118,14 +130,14 @@
           {monthsOfYear}
           bind:dateChosen
           bind:selected >
-               <Icon data={calendar} scale="5"/>
+              <Icon data={calendar} scale="5"/>
           </Datepicker>
       </div>
       <div class="wd-25">
-        <Icon data={plusCircle} scale="5"/>
+        <Icon data={cloudUpload} scale="5"/>
       </div>
       <div class="wd-25">
-        <Icon data={table} scale="5"/>
+        <Icon data={fileExcelO} scale="5"/>
       </div>
       <div class="wd-25">
         <Icon data={areaChart} scale="5" />
