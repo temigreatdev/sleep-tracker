@@ -11,10 +11,10 @@
         hourLightsOff: "00:00",
         timeToStartSleepInMinutes: 0,
         timesAwakedDuringSleep: 0,
-        totalTimeAwakedDuringSleepInHours:0,
+        totalTimeAwakedDuringSleepInHours:"00:00",
         hourAwaked:"00:00",
         hourGoOffTheBed:"00:00",
-        totalHoursOfSleepLastNight:0
+        totalHoursOfSleepLastNight:"00:00"
       },
       onSubmit: values => {
         alert(JSON.stringify(values));
@@ -49,46 +49,39 @@
     @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
     form { 
-        max-width:420px;
+        max-width:700;
         max-height: 100%;
         margin:10px auto; 
+    }
+
+    .input-wrapper {
+        display: flex;
+        background-color: transparent;
+        width:100%;
+        margin: 5px 5px;
+        color:white;
+        text-align: justify;
+    }
+
+    .input-wrapper span {
+        margin-right: 15px;
+    }
+
+    .title-form {
+        font-size: 14pt;
     }
 
     .feedback-input {
         height: 30px;
         color:white;
-        font-family: Helvetica, Arial, sans-serif;
-        font-weight:500;
-        font-size: 12pt;
-        border-radius: 5px;
-        line-height: 11px;
         background-color: transparent;
-        border:2px solid #9544eb;
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight:bold;
+        font-size: 12pt;
+        line-height: 11px;
         transition: all 0.3s;
-        padding: 6px;
-        margin: 0px 5px;
-        width:100%;
-        box-sizing: border-box;
         outline:0;
-    }
-
-    .feedback-input:focus { 
-        border:2px solid #9544ea; 
-    }
-
-    input:invalid:before {
-        color: #808080;
-        content: attr(placeholder);
-        padding-left: 10px;
-        pointer-events: none;
-        position: absolute;
-        left: 20px;
-    }
-
-    input:valid:before,
-    input:focus:before,
-    input:active:before {
-    display: none;
+        border:none;
     }
 
     [type="submit"] {
@@ -114,88 +107,128 @@
     .container {
         height: 100%;
     }
+
+    .wd-10 {
+        width: 10%;
+    }
+
+    .wd-90 {
+        width: 90%;
+    }
     
   </style>
 
 <div class="container">
-            <span id="date">{$form.date}</span>   
+    
     <form on:submit={handleSubmit}>
         
-            <label for="hourToBed">Que horas você foi para a cama?</label>    
+        <span id="date" class="title-form">{$form.date}</span>   
+        
+        <div class="input-wrapper">
+            <span class="wd-90">Que horas você foi para a cama?</span>
             <input
             id="hourToBed"
             name="hourToBed"
-            on:change={handleChange}
-            bind:value={$form.hourToBed}
-            class="feedback-input"
-            placeholder="Que horas você foi para a cama?"
             type="time"
-            />
-
-            <input
-            id="hourToBed"
-            name="hourToBed"
+            class="feedback-input wd-10"
             on:change={handleChange}
             bind:value={$form.hourToBed}
-            class="feedback-input"
-            placeholder="Que horas você foi para a cama?"
+            required
             />
+        </div>
 
+        <div class="input-wrapper">
+            <span class="wd-90">Que horas você desligou as luzes para dormir?</span>
             <input
-            id="hourToBed"
-            name="hourToBed"
+            id="hourLightsOff"
+            name="hourLightsOff"
+            type="time"
+            class="feedback-input wd-10"
             on:change={handleChange}
-            bind:value={$form.hourToBed}
-            class="feedback-input"
-            placeholder="Que horas você foi para a cama?"
+            bind:value={$form.hourLightsOff}
+            required
             />
+        </div>
 
+        <div class="input-wrapper">
+            <span class="wd-90">Quantos tempo você demorou para iniciar o sono? (minutos)</span>
             <input
-            id="hourToBed"
-            name="hourToBed"
+            id="timeToStartSleepInMinutes"
+            name="timeToStartSleepInMinutes"
+            type="number"
+            class="feedback-input wd-10"
             on:change={handleChange}
-            bind:value={$form.hourToBed}
-            class="feedback-input"
-            placeholder="Que horas você foi para a cama?"
+            bind:value={$form.timeToStartSleepInMinutes}
+            required
             />
+        </div>
 
+        <div class="input-wrapper">
+            <span class="wd-90">Quantas vezes você acordou na noite passada?</span>
             <input
-            id="hourToBed"
-            name="hourToBed"
+            id="timesAwakedDuringSleep"
+            name="timesAwakedDuringSleep"
+            type="number"
+            class="feedback-input wd-10"
             on:change={handleChange}
-            bind:value={$form.hourToBed}
-            class="feedback-input"
-            placeholder="Que horas você foi para a cama?"
+            bind:value={$form.timesAwakedDuringSleep}
+            required
             />
+        </div>
 
+        <div class="input-wrapper">
+            <span class="wd-90">Quanto tempo você ficou acordado ao longo da noite? (tempo total dos despertares.)</span>
             <input
-            id="hourToBed"
-            name="hourToBed"
+            id="totalTimeAwakedDuringSleepInHours"
+            name="totalTimeAwakedDuringSleepInHours"
+            type="time"
+            class="feedback-input wd-10"
             on:change={handleChange}
-            bind:value={$form.hourToBed}
-            class="feedback-input"
-            placeholder="Que horas você foi para a cama?"
+            bind:value={$form.totalTimeAwakedDuringSleepInHours}
+            required
             />
+        </div>
 
+          <div class="input-wrapper">
+            <span class="wd-90">Que horas você acordou pela manhã?</span>
             <input
-            id="hourToBed"
-            name="hourToBed"
+            id="hourAwaked"
+            name="hourAwaked"
+            type="time"
+            class="feedback-input wd-10"
             on:change={handleChange}
-            bind:value={$form.hourToBed}
-            class="feedback-input"
-            placeholder="Que horas você foi para a cama?"
+            bind:value={$form.hourAwaked}
+            required
             />
+        </div>
 
+        <div class="input-wrapper">
+            <span class="wd-90">Que horas você se levantou da cama?</span>
             <input
-            id="hourToBed"
-            name="hourToBed"
+            id="hourGoOffTheBed"
+            name="hourGoOffTheBed"
+            type="time"
+            class="feedback-input wd-10"
             on:change={handleChange}
-            bind:value={$form.hourToBed}
-            class="feedback-input"
-            placeholder="Que horas você foi para a cama?"
+            bind:value={$form.hourGoOffTheBed}
+            required
             />
+        </div>      
 
-            <input type="submit" value="SALVAR"/>
+        <div class="input-wrapper">
+            <span class="wd-90">Quantas horas você dormiu na noite passada?</span>
+            <input
+            id="totalHoursOfSleepLastNight"
+            name="totalHoursOfSleepLastNight"
+            type="time"
+            class="feedback-input wd-10"
+            on:change={handleChange}
+            bind:value={$form.totalHoursOfSleepLastNight}
+            required
+            />
+        </div>          
+
+        <input type="submit" value="SALVAR"/>
 
     </form>
     

@@ -83,26 +83,26 @@
     width: 25%;
   }
 
-  .vh-70 {
-    height: 70vh;
+  .vh-75 {
+    height: 75vh;
     overflow: hidden;
   }
 
-  .vh-30 {
-    height: 30vh;
+  .vh-25 {
+    height: 25vh;
     overflow: hidden;
   }
 </style>
 
 <main>
-  <div class="container vh-70">
+  <div class="container vh-75">
     <div class="panel wd-100" >
      
       <Forms selectedDate={ formatedDate }/>
 
     </div>
   </div>
-  <div class="container opacity-90 vh-30">
+  <div class="container opacity-90 vh-25">
     <div class="panel wd-100">
       <div class="wd-25">
         <Datepicker
