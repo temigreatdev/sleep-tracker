@@ -30,7 +30,8 @@
   ];
 
   let dateChosen = null;
-  let selected = new Date();
+  $: selected = new Date();
+  $: formatedDate = dayjs(selected).format('DD/MM/YYYY');
 </script>
 
 <style>
@@ -46,8 +47,8 @@
     background-color: #313040a8;
     margin: 10px;
     text-align: center;
-    line-height: 75px;
-    font-size: 30px;
+    line-height: 40px;
+    font-size: 12pt;
     font-weight: bold;
   }
 
@@ -84,20 +85,20 @@
 
   .vh-70 {
     height: 70vh;
+    overflow: hidden;
   }
 
   .vh-30 {
     height: 30vh;
+    overflow: hidden;
   }
 </style>
 
 <main>
   <div class="container vh-70">
     <div class="panel wd-100" >
-      
-      { dayjs(selected).format('DD/MM/YYYY') }
      
-      <Forms/>
+      <Forms selectedDate={ formatedDate }/>
 
     </div>
   </div>
